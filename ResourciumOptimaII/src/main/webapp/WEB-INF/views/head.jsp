@@ -1,13 +1,7 @@
 
-
-<head>
-
     <meta charset="utf-8" />
-    <title>User List | Minia - Minimal Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="../../resources/images/favicon.ico">
@@ -33,4 +27,3 @@
     <!-- choice -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
 
-</head>

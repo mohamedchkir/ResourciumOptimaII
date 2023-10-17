@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
+<head>
+    <title>Login</title>
+    <jsp:include page="head.jsp" />
+</head>
 
-<jsp:include page="head.jsp" />
+
 <body>
 <!-- <body data-layout="horizontal"> -->
 <div class="auth-page">
@@ -101,8 +105,17 @@
 
 <jsp:include page="scripts.jsp" />
 
+<!-- JAVASCRIPT -->
+<script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/libs/metismenu/metisMenu.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/libs/simplebar/simplebar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/libs/node-waves/waves.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/libs/feather-icons/feather.min.js"></script>
+<!-- pace js -->
+<script src="${pageContext.request.contextPath}/resources/libs/pace-js/pace.min.js"></script>
+<!-- password addon init -->
+<script src="${pageContext.request.contextPath}/resources/js/pages/pass-addon.init.js"></script>
 
 </body>
-
-
 </html>
