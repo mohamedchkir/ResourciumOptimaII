@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hp
-  Date: 10/17/2023
-  Time: 11:36 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>document.write(new Date().getFullYear())</script> © ResourciumOptima.
+            </div>
+            <div class="col-sm-6">
+                <div class="text-sm-end d-none d-sm-block">
+                    Design & Develop by <a href="#" class="text-decoration-underline">Chkir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
