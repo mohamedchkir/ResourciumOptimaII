@@ -17,7 +17,7 @@
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="" class="d-block auth-logo">
-                                    <img src="${pageContext.request.contextPath}/resources/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">ResourciumOptima</span>
+                                    <img src="${pageContext.request.contextPath}/resources/images/logo-sm.svg" alt="" height="227"> <span class="logo-txt"></span>
                                 </a>
                             </div>
                             <div class="auth-content my-auto">
