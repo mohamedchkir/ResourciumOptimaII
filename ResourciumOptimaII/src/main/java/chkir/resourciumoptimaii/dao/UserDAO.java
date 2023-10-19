@@ -48,11 +48,11 @@ public class UserDAO {
             // Create a query to find a user with the given email.
             TypedQuery<User> query = entityManager.createQuery("SELECT u FROM user u WHERE u.email = :email", User.class);
             query.setParameter("email", email);
-            List<User> user = query.getResultList();
+            User user = query.getSingleResult();
             System.out.println(user);
 
             // Check if the provided password matches the stored password (use a secure password hashing method).
-            if (user != null && isPasswordValid(password, String.valueOf(user.contains(password)))) {
+            if (user != null && isPasswordValid(password, user.getPassword())) {
                 return (User) user; // Authentication successful
             } else {
                 return null; // Authentication failed
