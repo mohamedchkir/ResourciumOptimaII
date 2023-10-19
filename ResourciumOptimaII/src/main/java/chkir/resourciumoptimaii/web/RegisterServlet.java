@@ -1,7 +1,7 @@
 package chkir.resourciumoptimaii.web;
 
+
 import chkir.resourciumoptimaii.dao.UserDAO;
-import chkir.resourciumoptimaii.entities.Role;
 import chkir.resourciumoptimaii.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +40,6 @@ public class RegisterServlet extends HttpServlet {
         RequestDispatcher registerDispatcher = req.getRequestDispatcher("/WEB-INF/views/register.jsp");
         registerDispatcher.forward(req, resp);
 
-
     }
 
     @Override
@@ -50,16 +49,16 @@ public class RegisterServlet extends HttpServlet {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
         String email = req.getParameter("email");
-        String password = req.getParameter("password");
         String position = req.getParameter("position");
         String hireDateString = req.getParameter("date");
 
-
-        System.out.println(hireDateString);
+        // hash the password
+        String password = req.getParameter("password");
+        String hashedPassword = BCrypt.hashpw(password,BCrypt.gensalt(15));
 
         // Parse the hire date from the form input.
         Date hireDate = null;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             hireDate = dateFormat.parse(hireDateString);
         } catch (ParseException e) {
@@ -75,17 +74,24 @@ public class RegisterServlet extends HttpServlet {
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
         user.setPosition(position);
         user.setHireDate(hireDate);
 
 
         // Perform user registration.
-        userDAO.registerUser(user);
+        if (userDAO.registerUser(user)){
+            // Redirect to a success page or login page.
+            String contextPath = req.getContextPath();
+            String url = contextPath + "/login" ;
+            resp.sendRedirect(url);
+        }else {
+            // Redirect to  error page or register page.
+            String contextPath = req.getContextPath();
+            String url = contextPath + "/register" ;
+            resp.sendRedirect(url);
+        }
 
-        // Redirect to a success page or login page.
-        String contextPath = req.getContextPath();
-        String url = contextPath + "/login" ;
-        resp.sendRedirect(url);
+
     }
 }

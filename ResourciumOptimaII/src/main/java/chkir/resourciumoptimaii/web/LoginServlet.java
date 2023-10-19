@@ -41,11 +41,11 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        User user = userDAO.authenticateUser(email);
 
-        User user = userDAO.authenticateUser(email, password);
-
-        if (user != null) {
-            response.getWriter().write("success");
+        // Check if the provided password matches the stored password (use a secure password hashing method).
+        if (user != null && userDAO.isPasswordValid(password, user.getPassword())) {
+            response.getWriter().write("Success");
         } else {
             response.getWriter().write("error");
         }
