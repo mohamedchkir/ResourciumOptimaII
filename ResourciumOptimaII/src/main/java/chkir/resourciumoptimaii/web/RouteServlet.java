@@ -11,7 +11,7 @@ package chkir.resourciumoptimaii.web;
 
         import java.io.IOException;
 
-@WebServlet(name = "RouteServlet", value = {"/login", "/dashboard", "/profile","/"})
+@WebServlet(name = "RouteServlet", value = { "/dashboard", "/profile","/"})
 public class RouteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,7 +20,6 @@ public class RouteServlet extends HttpServlet {
 
         switch (path) {
             case "/":
-            case "/login":
                 RequestDispatcher loginDispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
                 loginDispatcher.forward(request, response);
                 break;
@@ -39,7 +38,4 @@ public class RouteServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
 }

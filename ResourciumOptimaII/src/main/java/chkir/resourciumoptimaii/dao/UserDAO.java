@@ -43,7 +43,32 @@ public class UserDAO {
         }
     }
 
+    public User authenticateUser(String email, String password) {
+        try {
+            // Create a query to find a user with the given email.
+            TypedQuery<User> query = entityManager.createQuery("SELECT u FROM user u WHERE u.email = :email", User.class);
+            query.setParameter("email", email);
+            List<User> user = query.getResultList();
+            System.out.println(user);
 
+            // Check if the provided password matches the stored password (use a secure password hashing method).
+            if (user != null && isPasswordValid(password, String.valueOf(user.contains(password)))) {
+                return (User) user; // Authentication successful
+            } else {
+                return null; // Authentication failed
+            }
+        } catch (NoResultException e) {
+            return null; // User with the provided email not found
+        }
+    }
+
+    // Method to check if the provided password matches the stored hashed password.
+    private boolean isPasswordValid(String providedPassword, String storedPassword) {
+        // Implement your password validation/hashing logic here.
+        // You should use a secure hashing algorithm (e.g., BCrypt) to validate passwords securely.
+        // For simplicity, this example does not cover password hashing; you should do it in a secure way.
+        return providedPassword.equals(storedPassword);
+    }
     public User getUserById(int userId) {
         return entityManager.find(User.class, userId);
     }

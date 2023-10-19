@@ -24,7 +24,7 @@
                                 <div class="text-center">
                                     <h5 class="mb-0">Welcome Back !</h5>
                                 </div>
-                                <form class="custom-form mt-4 pt-2">
+                                <form class="custom-form mt-4 pt-2" action="${pageContext.request.contextPath}/login" method="post">
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
