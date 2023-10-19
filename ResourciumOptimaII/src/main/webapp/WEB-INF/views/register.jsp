@@ -23,7 +23,7 @@
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
-                                <a href="index.html" class="d-block auth-logo">
+                                <a href="" class="d-block auth-logo">
                                     <img src="${pageContext.request.contextPath}/resources/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">ResourciumOptima</span>
                                 </a>
                             </div>
@@ -31,10 +31,10 @@
                                 <div class="text-center">
                                     <h5 class="mb-0">Register Account</h5>
                                 </div>
-                                <form class="needs-validation custom-form mt-4 pt-2" novalidate action="https://themesbrand.com/minia/layouts/index.html">
+                                <form class="needs-validation custom-form mt-4 pt-2" novalidate action="${pageContext.request.contextPath}/register" method="post">
                                     <div class="mb-3">
                                         <label for="mail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="mail" placeholder="Enter email" required>
+                                        <input type="email" class="form-control" name="email" id="mail" placeholder="Enter email" required>
                                         <div class="invalid-feedback">
                                             Please Enter Email
                                         </div>
@@ -42,7 +42,7 @@
 
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                                        <input type="text" class="form-control" name="username"  id="username" placeholder="Enter username" required>
                                         <div class="invalid-feedback">
                                             Please Enter Username
                                         </div>
@@ -50,7 +50,7 @@
 
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
                                         <div class="invalid-feedback">
                                             Please Enter Name
                                         </div>
@@ -58,7 +58,7 @@
 
                                     <div class="mb-3">
                                         <label for="surname" class="form-label">Surname</label>
-                                        <input type="text" class="form-control" id="surname" placeholder="Enter your surname" required>
+                                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter your surname" required>
                                         <div class="invalid-feedback">
                                             Please Enter Surname
                                         </div>
@@ -66,7 +66,7 @@
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                                         <div class="invalid-feedback">
                                             Please Enter Password
                                         </div>
@@ -74,7 +74,7 @@
 
                                     <div class="mb-3">
                                         <label for="position" class="form-label">Position</label>
-                                        <input type="text" class="form-control" id="position" placeholder="Enter your position" required>
+                                        <input type="text" class="form-control" id="position" name="position" placeholder="Enter your position" required>
                                         <div class="invalid-feedback">
                                             Please Enter Position
                                         </div>
@@ -82,7 +82,7 @@
 
                                     <div class="mb-3">
                                         <label for="hire_date" class="form-label">Hiring Date</label>
-                                        <input type="date" class="form-control" id="hire_date" placeholder="Enter the date" required>
+                                        <input type="date" class="form-control" id="hire_date" name="date" placeholder="Enter the date" required>
                                         <div class="invalid-feedback">
                                             Please Enter Hiring date
                                         </div>
