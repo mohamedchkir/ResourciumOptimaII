@@ -4,7 +4,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="../../resources/images/favicon.ico">
+    <link rel="shortcut icon" href="../../../resources/images/favicon.ico">
 
     <!-- DataTables -->
     <link href="${pageContext.request.contextPath}/resources/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

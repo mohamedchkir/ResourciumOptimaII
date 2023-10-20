@@ -9,8 +9,8 @@
 <script src="${pageContext.request.contextPath}/resources/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-<!-- JAVASCRIPT -->
 
+<!-- JAVASCRIPT -->
 <script src="${pageContext.request.contextPath}/resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/libs/metismenu/metisMenu.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/libs/simplebar/simplebar.min.js"></script>
@@ -35,12 +35,9 @@
 <!-- dropzone js -->
 <script src="${pageContext.request.contextPath}/resources/libs/dropzone/min/dropzone.min.js"></script>
 
-
+<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Include Choices JavaScript (latest) -->
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
-
-<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>

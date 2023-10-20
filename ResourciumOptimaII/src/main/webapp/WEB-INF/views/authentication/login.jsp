@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Login</title>
-    <jsp:include page="head.jsp" />
+    <jsp:include page="../components/head.jsp" />
 </head>
 
 
@@ -103,7 +103,7 @@
     <!-- end container fluid -->
 </div>
 
-<jsp:include page="scripts.jsp" />
+<jsp:include page="../components/scripts.jsp" />
 
 <!-- JAVASCRIPT -->
 <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>

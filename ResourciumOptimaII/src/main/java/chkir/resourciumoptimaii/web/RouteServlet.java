@@ -20,11 +20,11 @@ public class RouteServlet extends HttpServlet {
 
         switch (path) {
             case "/":
-                RequestDispatcher loginDispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
+                RequestDispatcher loginDispatcher = request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp");
                 loginDispatcher.forward(request, response);
                 break;
             case "/dashboard":
-                RequestDispatcher dashboardDispatcher = request.getRequestDispatcher("/WEB-INF/Dashboard/dashboard.jsp");
+                RequestDispatcher dashboardDispatcher = request.getRequestDispatcher("/WEB-INF/views/users/users.jsp");
                 dashboardDispatcher.forward(request, response);
                 break;
             case "/profile":

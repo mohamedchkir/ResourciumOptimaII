@@ -10,7 +10,7 @@
 
 <head lang="en">
     <title>Register</title>
-    <jsp:include page="head.jsp" />
+    <jsp:include page="../components/head.jsp" />
 </head>
 
 <body>
@@ -134,7 +134,7 @@
     <!-- end container fluid -->
 </div>
 
-<jsp:include page="scripts.jsp" />
+<jsp:include page="../components/scripts.jsp" />
 
 <!-- JAVASCRIPT -->
 <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
