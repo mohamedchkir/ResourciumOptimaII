@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +16,16 @@
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
+                            <c:if test="${not empty sessionScope.errorMessage}">
+                                <div class="alert alert-danger">
+                                        ${sessionScope.errorMessage}
+                                </div>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.success}">
+                                <div class="alert alert-success">
+                                        ${sessionScope.success}
+                                </div>
+                            </c:if>
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="" class="d-block auth-logo">
                                     <img src="${pageContext.request.contextPath}/resources/images/logo-sm.svg" alt="" height="227"> <span class="logo-txt"></span>

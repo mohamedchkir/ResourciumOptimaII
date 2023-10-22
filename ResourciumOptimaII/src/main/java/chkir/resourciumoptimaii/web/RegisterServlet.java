@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        RequestDispatcher registerDispatcher = req.getRequestDispatcher("/WEB-INF/views/register.jsp");
+        RequestDispatcher registerDispatcher = req.getRequestDispatcher("/WEB-INF/views/authentication/register.jsp");
         registerDispatcher.forward(req, resp);
 
     }
@@ -82,9 +82,9 @@ public class RegisterServlet extends HttpServlet {
         // Perform user registration.
         if (userDAO.registerUser(user)){
             // Redirect to a success page or login page.
-            String contextPath = req.getContextPath();
-            String url = contextPath + "/login" ;
-            resp.sendRedirect(url);
+            req.getSession().setAttribute("success", "Compte creer avec successé");
+            req.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(req, resp);
+
         }else {
             // Redirect to  error page or register page.
             String contextPath = req.getContextPath();

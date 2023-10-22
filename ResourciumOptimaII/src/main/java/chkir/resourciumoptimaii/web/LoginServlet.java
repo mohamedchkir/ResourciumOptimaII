@@ -31,12 +31,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("./WEB-INF/views/authentication/login.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -45,9 +44,14 @@ public class LoginServlet extends HttpServlet {
 
         // Check if the provided password matches the stored password (use a secure password hashing method).
         if (user != null && userDAO.isPasswordValid(password, user.getPassword())) {
-            response.getWriter().write("Success");
+            request.getSession().setAttribute("user",user);
+
         } else {
-            response.getWriter().write("error");
+            request.getSession().setAttribute("errorMessage", "Nom d'utilisateur ou mot de passe incorrect");
+
+
+            request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
+
         }
     }
 
