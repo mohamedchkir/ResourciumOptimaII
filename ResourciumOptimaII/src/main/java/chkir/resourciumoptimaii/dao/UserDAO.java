@@ -98,4 +98,20 @@ public class UserDAO {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM user u", User.class);
         return query.getResultList();
     }
+
+
+    public User updateUser(User user) {
+        entityManager.getTransaction().begin();
+        User user1 = entityManager.merge(user);
+        entityManager.getTransaction().commit();
+        return user1;
+    }
+
+    public void deleteUser(Long id) {
+        entityManager.getTransaction().begin();
+        User user = entityManager.find(User.class, id);
+        if (user != null) entityManager.remove(user);
+        entityManager.getTransaction().commit();
+    }
+
 }
