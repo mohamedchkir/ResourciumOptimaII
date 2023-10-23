@@ -128,11 +128,15 @@
               <td>${user.position}</td>
               <td>${user.email}</td>
               <td>${formattedDate}</td>
-              <td  class="badge badge-soft-primary">${roleName}</td>
+              <td>${roleName}</td>
               <td>
                 <div class="dropdown">
-                  <button type="button"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-pencil font-size-16 align-middle"></i></button>
-                  <button type="button" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
+
+                  <form action="${pageContext.request.contextPath}/deleteUser" method="get">
+                    <input type="hidden" name="userId" value="${user.id}" />
+                  <button type="submit" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
+                  </form>
+                    <button type="button"   class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-pencil font-size-16 align-middle"></i></button>
 
                 </div>
               </td>
