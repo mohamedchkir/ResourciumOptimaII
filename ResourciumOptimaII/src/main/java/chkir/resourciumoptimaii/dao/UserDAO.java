@@ -62,7 +62,6 @@ public class UserDAO {
 
     public User authenticateUser(String email) {
 
-        //todo : check if the email exist in database
         try {
             TypedQuery<User> query = entityManager.createQuery("SELECT u FROM user u WHERE u.email = :email", User.class);
             query.setParameter("email", email);
