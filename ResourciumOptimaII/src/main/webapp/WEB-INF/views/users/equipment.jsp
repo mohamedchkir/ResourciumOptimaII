@@ -21,13 +21,13 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0 font-size-18">User List</h4>
+              <h4 class="mb-sm-0 font-size-18">Equipment List</h4>
 
             </div>
           </div>
         </div>
         <!-- end page title -->
-        </div>
+
         <!-- end row -->
 
         <div class="table-responsive mb-4">
@@ -35,43 +35,24 @@
             <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Position</th>
+              <th scope="col">Status</th>
               <th scope="col">Email</th>
-              <th scope="col">Hiring Date</th>
-              <th scope="col">Role</th>
+              <th scope="col">Buy Date</th>
               <th style="width: 80px; min-width: 80px;">Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${users}" var="user">
+            <c:forEach items="${equipments}" var="equipment">
 
-              <fmt:formatDate value="${user.hireDate}" pattern="yyyy-MM-dd" var="formattedDate" />
-
-              <c:choose>
-                <c:when test="${user.role.id == 1}">
-                  <c:set var="roleName" value="Admin" />
-                </c:when>
-                <c:when test="${user.role.id == 2}">
-                  <c:set var="roleName" value="Employee" />
-                </c:when>
-                <c:when test="${user.role.id == 3}">
-                  <c:set var="roleName" value="Technicien" />
-                </c:when>
-                <c:otherwise>
-                  <c:set var="roleName" value="Unknown Role" />
-                </c:otherwise>
-              </c:choose>
               <tr>
-
-              <td>${user.name}</td>
-              <td>${user.position}</td>
-              <td>${user.email}</td>
-              <td>${formattedDate}</td>
-              <td><span class="badge badge-soft-primary">${roleName}</span></td>
+              <td>${equipment.name}</td>
+              <td><span class="badge badge-soft-dark">${equipment.status}</span></td>
+              <td>${equipment.buy_date}</td>
+              <td><span class="badge badge-soft-primary">${equipment.type}</span></td>
               <td>
                 <div class="d-flex gap-2">
-                  <form action="${pageContext.request.contextPath}/deleteUser" method="get">
-                    <input type="hidden" name="userId" value="${user.id}" />
+                  <form action="${pageContext.request.contextPath}/deleteEquipments" method="get">
+                    <input type="hidden" name="EquipmentId" value="${equipment.id}" />
                   <button type="submit" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
                   </form>
                     <button type="button"   class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-pencil font-size-16 align-middle"></i></button>

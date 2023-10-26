@@ -21,12 +21,6 @@ public class Equipment {
     private EquipmentStatus status;
 
 
-
-//    @ManyToMany(mappedBy = "equipment")
-//    private List<Task> tasks;
-
-    // Getter and Setter methods
-
     public int getId() {
         return id;
     }

@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
         if (user != null && userDAO.isPasswordValid(password, user.getPassword())) {
             request.getSession().setAttribute("user",user);
 
-            response.sendRedirect(request.getContextPath() + "/dashboard");
+            response.sendRedirect(request.getContextPath() + "/users");
 
 
         } else {

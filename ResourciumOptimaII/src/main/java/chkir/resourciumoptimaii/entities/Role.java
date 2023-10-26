@@ -10,18 +10,6 @@ public class Role {
     private Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id" , nullable = false)
-    private Department department;
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }

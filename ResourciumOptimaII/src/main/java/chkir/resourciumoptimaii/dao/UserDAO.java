@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDAO {
 
-    private EntityManager entityManager;
+    private  EntityManager entityManager;
 
     public UserDAO(EntityManager entityManager) {
 
