@@ -1,5 +1,6 @@
 package chkir.resourciumoptimaii.dao;
 
+import chkir.resourciumoptimaii.entities.Equipment;
 import chkir.resourciumoptimaii.entities.Reservation;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -52,16 +53,10 @@ public class ReservationDAO {
         }
     }
 
-    public void deleteReservation(Reservation reservation) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(reservation);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        }
+    public void deleteReservation(int id) {
+        entityManager.getTransaction().begin();
+        Reservation reservation = entityManager.find(Reservation.class, id);
+        if (reservation != null) entityManager.remove(reservation);
+        entityManager.getTransaction().commit();
     }
 }
