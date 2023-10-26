@@ -23,7 +23,7 @@ public class ReservationDAO {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the error appropriately.
+            e.printStackTrace();
             return null;
         }
     }
@@ -47,7 +47,7 @@ public class ReservationDAO {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the error appropriately.
+            e.printStackTrace();
             return null;
         }
     }
@@ -61,7 +61,7 @@ public class ReservationDAO {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the error appropriately.
+            e.printStackTrace();
         }
     }
 }
