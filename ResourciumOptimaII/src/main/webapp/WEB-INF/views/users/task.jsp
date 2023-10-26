@@ -64,8 +64,8 @@
                                 <td><span class="badge badge-soft-primary">${task.status}</span></td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <form action="deleteEquipment" method="get">
-                                            <input type="hidden" name="EquipmentId" value="${equipment.id}" />
+                                        <form action="taskD" method="get">
+                                            <input type="hidden" name="taskId" value="${task.id}" />
                                             <button type="submit" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
                                         </form>
                                         <button type="button"   class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-pencil font-size-16 align-middle"></i></button>

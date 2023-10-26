@@ -5,6 +5,7 @@ import chkir.resourciumoptimaii.dao.ReservationDAO;
 import chkir.resourciumoptimaii.entities.Equipment;
 import chkir.resourciumoptimaii.entities.Reservation;
 import chkir.resourciumoptimaii.entities.User;
+import chkir.resourciumoptimaii.enums.EquipmentStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -62,7 +63,6 @@ public class ReservationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String startDateStr = request.getParameter("start_date");
         String endDateStr = request.getParameter("end_date");
         int userId = Integer.parseInt(request.getParameter("user"));
@@ -75,14 +75,17 @@ public class ReservationServlet extends HttpServlet {
             Date endDate = dateFormat.parse(endDateStr);
 
             User user = entityManager.find(User.class, userId);
-            Equipment equipment = entityManager.find(Equipment.class,equipmentId);
-
+            Equipment equipment = entityManager.find(Equipment.class, equipmentId);
 
             Reservation reservation = new Reservation();
             reservation.setStart_date(startDate);
             reservation.setEnd_date(endDate);
             reservation.setUser(user);
             reservation.setEquipment(equipment);
+
+            // Change the status of the equipment to "in use."
+            equipment.setStatus(EquipmentStatus.IN_USE);
+            entityManager.merge(equipment);
 
             reservationDAO.createReservation(reservation);
 
@@ -92,4 +95,5 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/reservations?error=date");
         }
     }
+
 }

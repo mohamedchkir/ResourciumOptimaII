@@ -52,18 +52,10 @@ public class TaskDAO {
         }
     }
 
-    public void deleteTask(Task task) {
-        try {
-            entityManager.getTransaction().begin();
-            task = entityManager.merge(task);
-            entityManager.remove(task);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-            // Handle the error appropriately.
-        }
+    public void deleteTask(int id) {
+        entityManager.getTransaction().begin();
+        Task task = entityManager.find(Task.class, id);
+        if (task != null) entityManager.remove(task);
+        entityManager.getTransaction().commit();
     }
 }
