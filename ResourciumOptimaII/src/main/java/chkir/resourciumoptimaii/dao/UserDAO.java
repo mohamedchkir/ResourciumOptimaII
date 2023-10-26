@@ -28,8 +28,8 @@ public class UserDAO {
             emailCheckQuery.setParameter("email", user.getEmail());
 
             if (emailCheckQuery.getResultList().isEmpty()) {
-                // Fetch the role entity with ID 2 (assuming 2 represents the desired role).
-                Role role = entityManager.find(Role.class, 2); // Assuming Role class and Role table exist.
+                // Fetch the role entity with ID 2 (assuming 2 represents the employee role).
+                Role role = entityManager.find(Role.class, 2);
 
                 if (role != null) {
                     // Set the role for the user.

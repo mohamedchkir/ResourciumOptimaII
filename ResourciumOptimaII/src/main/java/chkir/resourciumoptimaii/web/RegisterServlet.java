@@ -83,7 +83,10 @@ public class RegisterServlet extends HttpServlet {
         if (userDAO.registerUser(user)){
             // Redirect to a success page or login page.
             req.getSession().setAttribute("success", "Compte creer avec successé");
-            req.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(req, resp);
+
+            String contextPath = req.getContextPath();
+            String url = contextPath + "/login" ;
+            resp.sendRedirect(url);
 
         }else {
             // Redirect to  error page or register page.

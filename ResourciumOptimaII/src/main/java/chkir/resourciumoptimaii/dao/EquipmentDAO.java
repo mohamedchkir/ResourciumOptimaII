@@ -28,4 +28,25 @@ public class EquipmentDAO {
         entityManager.getTransaction().commit();
     }
 
+    public void createEquipment(Equipment equipment) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(equipment);
+        entityManager.getTransaction().commit();
+    }
+
+    public Equipment updateEquipment(Equipment equipment) {
+        entityManager.getTransaction().begin();
+        Equipment equipment1 = entityManager.merge(equipment);
+        entityManager.getTransaction().commit();
+        return equipment1;
+    }
+
+
+    public Equipment getEquipmentById(Long equipmentId) {
+        entityManager.getTransaction().begin();
+        Equipment equipment = entityManager.find(Equipment.class, equipmentId);
+        entityManager.getTransaction().commit();
+        return equipment;
+    }
+
 }

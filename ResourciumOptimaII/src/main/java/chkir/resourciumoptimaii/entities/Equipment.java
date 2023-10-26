@@ -20,6 +20,14 @@ public class Equipment {
     @Enumerated(EnumType.STRING)
     private EquipmentStatus status;
 
+    public Equipment(String name, String type, EquipmentStatus status, Date buyDate) {
+
+    }
+
+    public Equipment() {
+
+    }
+
 
     public int getId() {
         return id;

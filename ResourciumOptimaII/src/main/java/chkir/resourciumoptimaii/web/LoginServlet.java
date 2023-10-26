@@ -48,14 +48,10 @@ public class LoginServlet extends HttpServlet {
 
             response.sendRedirect(request.getContextPath() + "/users");
 
-
         } else {
             request.getSession().setAttribute("errorMessage", "Nom d'utilisateur ou mot de passe incorrect");
 
-
             response.sendRedirect(request.getContextPath() + "/login");
-
-
         }
     }
 
