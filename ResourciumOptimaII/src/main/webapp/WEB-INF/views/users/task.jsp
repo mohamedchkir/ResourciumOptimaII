@@ -48,9 +48,9 @@
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                            <th scope="col">Priority</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Buy Date</th>
-                            <th scope="col">Type</th>
                             <th style="width: 80px; min-width: 80px;">Action</th>
                         </tr>
                         </thead>
@@ -59,12 +59,12 @@
 
                             <tr>
                                 <td>${task.user.name}</td>
-                                <td><span class="badge badge-soft-dark">${task.description}</span></td>
-                                <td>${task.priority}</td>
+                                <td>${task.description}</td>
+                                <td><span class="badge badge-soft-dark">${task.priority}</span></td>
                                 <td><span class="badge badge-soft-primary">${task.status}</span></td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <form action="taskD" method="get">
+                                        <form action="deleteTask" method="get">
                                             <input type="hidden" name="taskId" value="${task.id}" />
                                             <button type="submit" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
                                         </form>
