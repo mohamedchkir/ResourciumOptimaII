@@ -46,16 +46,12 @@ public class LoginServlet extends HttpServlet {
         if (user != null && userDAO.isPasswordValid(password, user.getPassword())) {
             request.getSession().setAttribute("user",user);
 
-            response.sendRedirect(request.getContextPath() + "/dashboard");
-
+            response.sendRedirect(request.getContextPath() + "/users");
 
         } else {
             request.getSession().setAttribute("errorMessage", "Nom d'utilisateur ou mot de passe incorrect");
 
-
             response.sendRedirect(request.getContextPath() + "/login");
-
-
         }
     }
 

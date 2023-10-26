@@ -1,6 +1,6 @@
 package chkir.resourciumoptimaii.web;
 
-import chkir.resourciumoptimaii.dao.UserDAO;
+import chkir.resourciumoptimaii.dao.TaskDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -9,41 +9,42 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUserServlet", value = "/deleteUser")
-public class DeleteUserServlet extends HttpServlet {
-
+@WebServlet(name = "DeleteTaskServlet" ,value = "/deleteTask")
+public class DeleteTaskServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private UserDAO userDAO;
+    private TaskDAO taskDAO;
 
     @Override
     public void init() throws ServletException {
-
         entityManagerFactory = Persistence.createEntityManagerFactory("resourceOptima");
-        entityManager  = entityManagerFactory.createEntityManager();
-        userDAO = new UserDAO(entityManager);
+        entityManager = entityManagerFactory.createEntityManager();
+        taskDAO = new TaskDAO(entityManager);
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get the user ID to be deleted from the request parameter.
-        String userIdParam = request.getParameter("userId");
+        // Get the task ID to be deleted from the request parameter.
+        String taskIdParam = request.getParameter("taskId");
 
-        if (userIdParam != null) {
+        if (taskIdParam != null) {
             try {
-                Long userId = Long.parseLong(userIdParam);
+                int taskId = Integer.parseInt(taskIdParam);
 
-                // Delete the user by ID.
-                userDAO.deleteUser(userId);
+                // Delete the task by ID.
+                taskDAO.deleteTask(taskId);
             } catch (NumberFormatException e) {
-                // Handle the case where the userId parameter is not a valid number.
+                // Handle the case where the taskId parameter is not a valid number.
                 // You can add an error message or redirect to an error page.
                 e.printStackTrace();
             }
         }
 
-        // Redirect to a page after user deletion (e.g., users list or another page).
-        response.sendRedirect(request.getContextPath() + "/dashboard");
+        // Redirect to a page after task deletion (e.g., tasks list or another page).
+        response.sendRedirect(request.getContextPath() + "/tasks");
     }
+
 }

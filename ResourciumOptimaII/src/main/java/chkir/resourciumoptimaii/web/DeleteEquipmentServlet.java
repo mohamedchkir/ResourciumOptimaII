@@ -1,6 +1,7 @@
 package chkir.resourciumoptimaii.web;
 
-import chkir.resourciumoptimaii.dao.UserDAO;
+import chkir.resourciumoptimaii.dao.EquipmentDAO;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -9,33 +10,33 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUserServlet", value = "/deleteUser")
-public class DeleteUserServlet extends HttpServlet {
-
+@WebServlet(name ="DeleteEquipmentServlet" , value = "/deleteEquipment")
+public class DeleteEquipmentServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private UserDAO userDAO;
+    private EquipmentDAO equipmentDAO;
 
-    @Override
+
     public void init() throws ServletException {
 
         entityManagerFactory = Persistence.createEntityManagerFactory("resourceOptima");
         entityManager  = entityManagerFactory.createEntityManager();
-        userDAO = new UserDAO(entityManager);
+        equipmentDAO = new EquipmentDAO(entityManager);
     }
-    @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the user ID to be deleted from the request parameter.
-        String userIdParam = request.getParameter("userId");
+        String EquipmentIdParam = request.getParameter("EquipmentId");
 
-        if (userIdParam != null) {
+        if (EquipmentIdParam != null) {
             try {
-                Long userId = Long.parseLong(userIdParam);
+                Long equipmentId = Long.parseLong(EquipmentIdParam);
 
                 // Delete the user by ID.
-                userDAO.deleteUser(userId);
+                equipmentDAO.deleteEquipment(equipmentId);
             } catch (NumberFormatException e) {
                 // Handle the case where the userId parameter is not a valid number.
                 // You can add an error message or redirect to an error page.
@@ -44,6 +45,6 @@ public class DeleteUserServlet extends HttpServlet {
         }
 
         // Redirect to a page after user deletion (e.g., users list or another page).
-        response.sendRedirect(request.getContextPath() + "/dashboard");
+        response.sendRedirect(request.getContextPath() + "/equipments");
     }
 }

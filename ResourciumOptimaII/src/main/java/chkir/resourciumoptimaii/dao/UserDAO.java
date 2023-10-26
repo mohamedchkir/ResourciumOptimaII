@@ -1,5 +1,6 @@
 package chkir.resourciumoptimaii.dao;
 
+import chkir.resourciumoptimaii.entities.Department;
 import chkir.resourciumoptimaii.entities.Role;
 import chkir.resourciumoptimaii.entities.User;
 import jakarta.persistence.EntityManager;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class UserDAO {
 
-    private EntityManager entityManager;
+    private  EntityManager entityManager;
 
     public UserDAO(EntityManager entityManager) {
 
@@ -28,11 +29,12 @@ public class UserDAO {
             emailCheckQuery.setParameter("email", user.getEmail());
 
             if (emailCheckQuery.getResultList().isEmpty()) {
-                // Fetch the role entity with ID 2 (assuming 2 represents the desired role).
-                Role role = entityManager.find(Role.class, 2); // Assuming Role class and Role table exist.
+                // Fetch the role entity with ID 2 (assuming 2 represents the employee role).
+                Role role = entityManager.find(Role.class, 2);
+                Department department = entityManager.find(Department.class,1);
 
-                if (role != null) {
-                    // Set the role for the user.
+                if (role != null && department != null) {
+                    user.setDepartment(department);
                     user.setRole(role);
                     entityManager.persist(user);
                     entityManager.getTransaction().commit();
@@ -62,7 +64,6 @@ public class UserDAO {
 
     public User authenticateUser(String email) {
 
-        //todo : check if the email exist in database
         try {
             TypedQuery<User> query = entityManager.createQuery("SELECT u FROM user u WHERE u.email = :email", User.class);
             query.setParameter("email", email);

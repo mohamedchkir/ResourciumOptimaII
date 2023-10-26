@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UsersServlet", value = "/dashboard")
+@WebServlet(name = "UsersServlet", value = "/users")
 public class UserServlet extends HttpServlet {
 
 

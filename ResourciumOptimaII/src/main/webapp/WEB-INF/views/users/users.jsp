@@ -27,15 +27,6 @@
           </div>
         </div>
         <!-- end page title -->
-
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <h5 class="card-title">Users List </h5>
-            </div>
-          </div>
-
-
         </div>
         <!-- end row -->
 

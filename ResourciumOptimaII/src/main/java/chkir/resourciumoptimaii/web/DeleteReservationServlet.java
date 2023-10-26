@@ -1,6 +1,6 @@
 package chkir.resourciumoptimaii.web;
 
-import chkir.resourciumoptimaii.dao.UserDAO;
+import chkir.resourciumoptimaii.dao.ReservationDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -11,39 +11,39 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUserServlet", value = "/deleteUser")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet(name = "DeleteReservationServlet", value = "/deleteReservation")
+public class DeleteReservationServlet extends HttpServlet {
 
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private UserDAO userDAO;
+    private ReservationDAO reservationDAO;
 
     @Override
     public void init() throws ServletException {
-
         entityManagerFactory = Persistence.createEntityManagerFactory("resourceOptima");
-        entityManager  = entityManagerFactory.createEntityManager();
-        userDAO = new UserDAO(entityManager);
+        entityManager = entityManagerFactory.createEntityManager();
+        reservationDAO = new ReservationDAO(entityManager);
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get the user ID to be deleted from the request parameter.
-        String userIdParam = request.getParameter("userId");
+        // Get the reservation ID to be deleted from the request parameter.
+        String reservationIdParam = request.getParameter("reservationId");
 
-        if (userIdParam != null) {
+        if (reservationIdParam != null) {
             try {
-                Long userId = Long.parseLong(userIdParam);
+                    int reservationId = Integer.parseInt(reservationIdParam);
 
-                // Delete the user by ID.
-                userDAO.deleteUser(userId);
+                // Delete the reservation by ID.
+                reservationDAO.deleteReservation(reservationId);
             } catch (NumberFormatException e) {
-                // Handle the case where the userId parameter is not a valid number.
+                // Handle the case where the reservationId parameter is not a valid number.
                 // You can add an error message or redirect to an error page.
                 e.printStackTrace();
             }
         }
 
-        // Redirect to a page after user deletion (e.g., users list or another page).
-        response.sendRedirect(request.getContextPath() + "/dashboard");
+        // Redirect to a page after reservation deletion (e.g., reservations list or another page).
+        response.sendRedirect(request.getContextPath() + "/reservations");
     }
 }
