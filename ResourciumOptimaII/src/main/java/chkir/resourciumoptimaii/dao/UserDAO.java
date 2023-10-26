@@ -1,5 +1,6 @@
 package chkir.resourciumoptimaii.dao;
 
+import chkir.resourciumoptimaii.entities.Department;
 import chkir.resourciumoptimaii.entities.Role;
 import chkir.resourciumoptimaii.entities.User;
 import jakarta.persistence.EntityManager;
@@ -30,9 +31,10 @@ public class UserDAO {
             if (emailCheckQuery.getResultList().isEmpty()) {
                 // Fetch the role entity with ID 2 (assuming 2 represents the employee role).
                 Role role = entityManager.find(Role.class, 2);
+                Department department = entityManager.find(Department.class,1);
 
-                if (role != null) {
-                    // Set the role for the user.
+                if (role != null && department != null) {
+                    user.setDepartment(department);
                     user.setRole(role);
                     entityManager.persist(user);
                     entityManager.getTransaction().commit();

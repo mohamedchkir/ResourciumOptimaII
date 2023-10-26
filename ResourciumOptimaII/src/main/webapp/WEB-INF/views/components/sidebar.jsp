@@ -9,7 +9,7 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="">
+                    <a href="${pageContext.request.contextPath}/dashboard">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
@@ -30,14 +30,14 @@
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="${pageContext.request.contextPath}/tasks">
                         <i data-feather="home"></i>
                         <span data-key="t-task">Task</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="${pageContext.request.contextPath}/reservations">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Reservation</span>
                     </a>

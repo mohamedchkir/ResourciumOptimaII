@@ -11,17 +11,60 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String title;
     private String description;
-
-    @Temporal(TemporalType.DATE)
-    private Date dueDate;
 
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
 
 }
 
