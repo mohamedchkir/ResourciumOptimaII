@@ -1,7 +1,7 @@
 package chkir.resourciumoptimaii.web;
 
-import chkir.resourciumoptimaii.dao.EquipmentDAO;
 import chkir.resourciumoptimaii.dao.ReservationDAO;
+import chkir.resourciumoptimaii.dao.EquipmentDAO;
 import chkir.resourciumoptimaii.entities.Equipment;
 import chkir.resourciumoptimaii.entities.Reservation;
 import chkir.resourciumoptimaii.entities.User;
@@ -40,8 +40,8 @@ public class ReservationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve the user ID from the session.
-            HttpSession session = request.getSession(false); // Do not create a new session if it doesn't exist.
-            User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession(false); // Do not create a new session if it doesn't exist.
+        User user = (User) request.getSession().getAttribute("user");
         if (session != null) {
             Long userId = user.getId();
 
@@ -51,7 +51,6 @@ public class ReservationServlet extends HttpServlet {
             request.setAttribute("equipments", equipments);
             request.setAttribute("userId", userId);
 
-
             // Forward the request to the reservation view page (reservation.jsp).
             request.getRequestDispatcher("/WEB-INF/views/users/reservation.jsp").forward(request, response);
         } else {
@@ -59,7 +58,6 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/login");
         }
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -95,5 +93,4 @@ public class ReservationServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/reservations?error=date");
         }
     }
-
 }
