@@ -1,18 +1,20 @@
 package chkir.resourciumoptimaii.web;
 
 import chkir.resourciumoptimaii.dao.EquipmentDAO;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 @WebServlet(name ="DeleteEquipmentServlet" , value = "/deleteEquipment")
-public class DeleteEquipmentServlet {
+public class DeleteEquipmentServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EquipmentDAO equipmentDAO;
@@ -43,6 +45,6 @@ public class DeleteEquipmentServlet {
         }
 
         // Redirect to a page after user deletion (e.g., users list or another page).
-        response.sendRedirect(request.getContextPath() + "/dashboard");
+        response.sendRedirect(request.getContextPath() + "/equipments");
     }
 }

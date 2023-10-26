@@ -1,7 +1,6 @@
 package chkir.resourciumoptimaii.web;
 
 import chkir.resourciumoptimaii.dao.UserDAO;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

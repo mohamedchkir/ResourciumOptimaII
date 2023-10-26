@@ -57,14 +57,17 @@
             <tbody>
             <c:forEach items="${equipments}" var="equipment">
 
+              <fmt:formatDate value="${equipment.buy_date}" pattern="yyyy-MM-dd" var="formattedDate" />
+
+
               <tr>
               <td>${equipment.name}</td>
               <td><span class="badge badge-soft-dark">${equipment.status}</span></td>
-              <td>${equipment.buy_date}</td>
+              <td>${formattedDate}</td>
               <td><span class="badge badge-soft-primary">${equipment.type}</span></td>
               <td>
                 <div class="d-flex gap-2">
-                  <form action="${pageContext.request.contextPath}/deleteEquipments" method="get">
+                  <form action="deleteEquipment" method="get">
                     <input type="hidden" name="EquipmentId" value="${equipment.id}" />
                   <button type="submit" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-block font-size-16 align-middle"></i></button>
                   </form>
