@@ -2,7 +2,6 @@ package chkir.resourciumoptimaii.web;
 
 import chkir.resourciumoptimaii.dao.EquipmentDAO;
 import chkir.resourciumoptimaii.entities.Equipment;
-import chkir.resourciumoptimaii.entities.User;
 import chkir.resourciumoptimaii.enums.EquipmentStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -12,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import chkir.resourciumoptimaii.services.EquipmentService;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,51 +24,44 @@ public class EquipmentServlet extends HttpServlet {
 
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private EquipmentDAO equipmentDAO;
+    private EquipmentService equipmentService;
 
     @Override
     public void init() throws ServletException {
-
         entityManagerFactory = Persistence.createEntityManagerFactory("resourceOptima");
-        entityManager  = entityManagerFactory.createEntityManager();
-        equipmentDAO = new EquipmentDAO(entityManager);
+        entityManager = entityManagerFactory.createEntityManager();
+        equipmentService = new EquipmentService(entityManager);
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Equipment> allEquipments = equipmentDAO.getAllEquipments();
+        List<Equipment> allEquipments = equipmentService.getAllEquipments();
         request.setAttribute("equipments", allEquipments);
         request.getRequestDispatcher("/WEB-INF/views/users/equipment.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String name = req.getParameter("name");
         String type = req.getParameter("type");
         EquipmentStatus status = EquipmentStatus.valueOf(req.getParameter("status"));
         String date = req.getParameter("date");
 
-        // Parse the hire date from the form input.
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date buy_Date = null;
+        Date buyDate = null;
         try {
-             buy_Date = dateFormat.parse(date);
+            buyDate = dateFormat.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
-
             resp.sendRedirect("/register?error=date");
             return;
         }
 
-        // Create a new User object.
-        Equipment equipment = new Equipment();
-
-        equipment.setName(name);
-        equipment.setBuy_date(buy_Date);
-        equipment.setType(type);
-        equipment.setStatus(status);
-        equipmentDAO.createEquipment(equipment);
-
+        try {
+            equipmentService.createEquipment(name, type, status, date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         resp.sendRedirect(req.getContextPath() + "/equipments");
     }
 }

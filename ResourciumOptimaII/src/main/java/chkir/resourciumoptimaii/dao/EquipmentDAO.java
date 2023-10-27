@@ -1,19 +1,16 @@
 package chkir.resourciumoptimaii.dao;
 
 import chkir.resourciumoptimaii.entities.Equipment;
-import chkir.resourciumoptimaii.entities.User;
 import chkir.resourciumoptimaii.enums.EquipmentStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 public class EquipmentDAO {
 
-    private   EntityManager entityManager;
+    private EntityManager entityManager;
 
     public EquipmentDAO(EntityManager entityManager) {
-
         this.entityManager = entityManager;
     }
 
@@ -42,7 +39,6 @@ public class EquipmentDAO {
         return equipment1;
     }
 
-
     public Equipment getEquipmentById(Long equipmentId) {
         entityManager.getTransaction().begin();
         Equipment equipment = entityManager.find(Equipment.class, equipmentId);
@@ -51,12 +47,8 @@ public class EquipmentDAO {
     }
 
     public List<Equipment> getAvailableEquipment() {
-        TypedQuery<Equipment> query = entityManager.createQuery(
-                "SELECT e FROM equipment e WHERE e.status = :status",
-                Equipment.class
-        );
+        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM equipment  e WHERE e.status = :status", Equipment.class);
         query.setParameter("status", EquipmentStatus.AVAILABLE);
         return query.getResultList();
     }
-
 }
