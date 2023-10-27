@@ -47,7 +47,7 @@ public class EquipmentDAO {
     }
 
     public List<Equipment> getAvailableEquipment() {
-        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM equipment  e WHERE e.status = :status", Equipment.class);
+        TypedQuery<Equipment> query  = entityManager.createQuery("SELECT e FROM equipment  e WHERE e.status = :status", Equipment.class);
         query.setParameter("status", EquipmentStatus.AVAILABLE);
         return query.getResultList();
     }
