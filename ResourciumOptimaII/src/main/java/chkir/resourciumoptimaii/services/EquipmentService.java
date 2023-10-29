@@ -21,9 +21,11 @@ public class EquipmentService {
         return equipmentDAO.getAllEquipments();
     }
 
-    public void deleteEquipment(Long id) {
+    public void
+    deleteEquipment(Long id) {
         equipmentDAO.deleteEquipment(id);
     }
+
 
     public void createEquipment(String name, String type, EquipmentStatus status, String date) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,4 +51,24 @@ public class EquipmentService {
     public List<Equipment> getAvailableEquipment() {
         return equipmentDAO.getAvailableEquipment();
     }
+
+    public Equipment updateEquipment(Long id, String name, String type, EquipmentStatus status, String date) throws ParseException {
+        Equipment existingEquipment = equipmentDAO.getEquipmentById(id);
+
+        if (existingEquipment == null) {
+            // Handle the case where the equipment with the given ID is not found.
+            return null;
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date buyDate = dateFormat.parse(date);
+
+        existingEquipment.setName(name);
+        existingEquipment.setType(type);
+        existingEquipment.setStatus(status);
+        existingEquipment.setBuy_date(buyDate);
+
+        return equipmentDAO.updateEquipment(existingEquipment);
+    }
+
 }

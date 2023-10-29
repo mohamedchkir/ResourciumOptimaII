@@ -19,6 +19,7 @@ public class EquipmentDAO {
         return query.getResultList();
     }
 
+
     public void deleteEquipment(Long id) {
         entityManager.getTransaction().begin();
         Equipment equipment = entityManager.find(Equipment.class, id);

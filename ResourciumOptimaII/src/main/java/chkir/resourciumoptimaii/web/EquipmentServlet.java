@@ -64,4 +64,30 @@ public class EquipmentServlet extends HttpServlet {
         }
         resp.sendRedirect(req.getContextPath() + "/equipments");
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Retrieve the parameters from the request.
+        Long id = Long.parseLong(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String type = req.getParameter("type");
+        EquipmentStatus status = EquipmentStatus.valueOf(req.getParameter("status"));
+        String date = req.getParameter("date");
+
+        try {
+            Equipment updatedEquipment = equipmentService.updateEquipment(id, name, type, status, date);
+
+            if (updatedEquipment != null) {
+                // Update successful
+                resp.sendRedirect(req.getContextPath() + "/equipments");
+            } else {
+                // Handle the case where the equipment with the given ID is not found.
+                resp.sendRedirect(req.getContextPath() + "/equipments?error=notfound");
+            }
+        } catch (ParseException e) {
+            // Handle parsing error
+            resp.sendRedirect(req.getContextPath() + "/equipments?error=date");
+        }
+    }
+
 }
