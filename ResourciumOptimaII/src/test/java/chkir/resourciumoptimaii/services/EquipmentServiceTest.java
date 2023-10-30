@@ -120,4 +120,45 @@ public class EquipmentServiceTest {
         assertEquals("Type2", updatedEquipment.getType());
         assertEquals(EquipmentStatus.IN_USE, updatedEquipment.getStatus());
     }
+
+    @Test
+    void testGetAvailableEquipment() {
+
+        List<Equipment> availableEquipments = equipmentService.getAvailableEquipment();
+        int availableEquipmentsNumber = availableEquipments.size();
+
+        // Create some equipment with different statuses
+        Equipment availableEquipment = new Equipment("Available Equipment", "Type1", EquipmentStatus.AVAILABLE, new Date());
+        entityManager.getTransaction().begin();
+        entityManager.persist(availableEquipment);
+
+        entityManager.getTransaction().commit();
+
+        // Get available equipment
+        List<Equipment> availableEquipmentList = equipmentService.getAvailableEquipment();
+
+        // Assert that only the "Available" equipment is retrieved
+        assertEquals(availableEquipmentsNumber + 1, availableEquipmentList.size());
+        assertEquals("Available Equipment", availableEquipmentList.get(0).getName());
+    }
+
+    @Test
+    void testUpdateEquipmentNonExistent() throws ParseException {
+        // Test updating a non-existent equipment
+        Equipment updatedEquipment = equipmentService.updateEquipment(999, "Updated Equipment", "Type2", EquipmentStatus.IN_USE, "2023-10-28");
+
+        // Assert that updatedEquipment is null
+        assertNull(updatedEquipment);
+    }
+
+    @Test
+    void testDeleteEquipmentNonExistent() {
+        // Test deleting a non-existent equipment
+        assertThrows(IllegalArgumentException.class, () -> equipmentService.deleteEquipment(999));
+        // The test is expected to throw an IllegalArgumentException
+    }
+
+
+
+
 }

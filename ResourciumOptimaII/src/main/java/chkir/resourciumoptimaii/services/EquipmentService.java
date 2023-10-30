@@ -21,10 +21,17 @@ public class EquipmentService {
         return equipmentDAO.getAllEquipments();
     }
 
-    public void
-    deleteEquipment(int id) {
-        equipmentDAO.deleteEquipment(id);
+    public void deleteEquipment(int id) {
+        Equipment equipment = equipmentDAO.getEquipmentById(id);
+
+        if (equipment != null) {
+            equipmentDAO.deleteEquipment(id);
+        } else {
+            // Handle the case where the equipment with the given ID is not found.
+            throw new IllegalArgumentException("Equipment not found.");
+        }
     }
+
 
 
     public void createEquipment(String name, String type, EquipmentStatus status, String date) throws ParseException {
@@ -40,9 +47,6 @@ public class EquipmentService {
         equipmentDAO.createEquipment(equipment);
     }
 
-    public Equipment updateEquipment(Equipment equipment) {
-        return equipmentDAO.updateEquipment(equipment);
-    }
 
     public Equipment getEquipmentById(int equipmentId) {
         return equipmentDAO.getEquipmentById(equipmentId);
