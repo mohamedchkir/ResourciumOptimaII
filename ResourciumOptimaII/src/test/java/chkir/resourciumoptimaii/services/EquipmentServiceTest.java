@@ -122,17 +122,13 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    void testGetAvailableEquipment() {
+    void testGetAvailableEquipment() throws ParseException {
 
         List<Equipment> availableEquipments = equipmentService.getAvailableEquipment();
         int availableEquipmentsNumber = availableEquipments.size();
 
         // Create some equipment with different statuses
-        Equipment availableEquipment = new Equipment("Available Equipment", "Type1", EquipmentStatus.AVAILABLE, new Date());
-        entityManager.getTransaction().begin();
-        entityManager.persist(availableEquipment);
-
-        entityManager.getTransaction().commit();
+        equipmentService.createEquipment("Available Equipment", "Type1", EquipmentStatus.AVAILABLE,"2023-10-28");
 
         // Get available equipment
         List<Equipment> availableEquipmentList = equipmentService.getAvailableEquipment();
@@ -156,6 +152,17 @@ public class EquipmentServiceTest {
         // Test deleting a non-existent equipment
         assertThrows(IllegalArgumentException.class, () -> equipmentService.deleteEquipment(999));
         // The test is expected to throw an IllegalArgumentException
+    }
+
+    @Test
+    void testPerformanceGetAllEquipments() {
+        // Performance test for retrieving all equipment
+        long startTime = System.currentTimeMillis();
+        List<Equipment> equipmentList = equipmentService.getAllEquipments();
+        long endTime = System.currentTimeMillis();
+
+        // Ensure the retrieval is fast (adjust the number for your dataset)
+        assertTrue(endTime - startTime < 400); // 100 milliseconds
     }
 
 
