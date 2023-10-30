@@ -68,7 +68,7 @@ public class EquipmentServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Retrieve the parameters from the request.
-        Long id = Long.parseLong(req.getParameter("id"));
+        int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String type = req.getParameter("type");
         EquipmentStatus status = EquipmentStatus.valueOf(req.getParameter("status"));

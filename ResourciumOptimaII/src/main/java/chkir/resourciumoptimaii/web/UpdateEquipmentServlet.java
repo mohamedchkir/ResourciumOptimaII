@@ -30,7 +30,7 @@ public class UpdateEquipmentServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve equipment details from the request
-        Long id = Long.parseLong(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         EquipmentStatus status = EquipmentStatus.valueOf(request.getParameter("status"));
         String type = request.getParameter("type");

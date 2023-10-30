@@ -34,7 +34,7 @@ public class DeleteEquipmentServlet extends HttpServlet {
 
         if (EquipmentIdParam != null) {
             try {
-                Long equipmentId = Long.parseLong(EquipmentIdParam);
+                int equipmentId = Integer.parseInt(EquipmentIdParam);
 
                 // Delete the user by ID.
                 equipmentService.deleteEquipment(equipmentId);

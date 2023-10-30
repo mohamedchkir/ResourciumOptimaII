@@ -22,7 +22,7 @@ public class EquipmentService {
     }
 
     public void
-    deleteEquipment(Long id) {
+    deleteEquipment(int id) {
         equipmentDAO.deleteEquipment(id);
     }
 
@@ -44,7 +44,7 @@ public class EquipmentService {
         return equipmentDAO.updateEquipment(equipment);
     }
 
-    public Equipment getEquipmentById(Long equipmentId) {
+    public Equipment getEquipmentById(int equipmentId) {
         return equipmentDAO.getEquipmentById(equipmentId);
     }
 
@@ -52,7 +52,7 @@ public class EquipmentService {
         return equipmentDAO.getAvailableEquipment();
     }
 
-    public Equipment updateEquipment(Long id, String name, String type, EquipmentStatus status, String date) throws ParseException {
+    public Equipment updateEquipment(int id, String name, String type, EquipmentStatus status, String date) throws ParseException {
         Equipment existingEquipment = equipmentDAO.getEquipmentById(id);
 
         if (existingEquipment == null) {
