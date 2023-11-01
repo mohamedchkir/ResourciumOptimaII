@@ -1,28 +1,26 @@
 package chkir.resourciumoptimaii.dao;
 
 import chkir.resourciumoptimaii.entities.Equipment;
-import chkir.resourciumoptimaii.entities.User;
 import chkir.resourciumoptimaii.enums.EquipmentStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 public class EquipmentDAO {
 
-    private   EntityManager entityManager;
+    private EntityManager entityManager;
 
     public EquipmentDAO(EntityManager entityManager) {
-
         this.entityManager = entityManager;
     }
 
     public List<Equipment> getAllEquipments() {
-        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM equipment e", Equipment.class);
+        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e", Equipment.class);
         return query.getResultList();
     }
 
-    public void deleteEquipment(Long id) {
+
+    public void deleteEquipment(int id) {
         entityManager.getTransaction().begin();
         Equipment equipment = entityManager.find(Equipment.class, id);
         if (equipment != null) entityManager.remove(equipment);
@@ -42,8 +40,7 @@ public class EquipmentDAO {
         return equipment1;
     }
 
-
-    public Equipment getEquipmentById(Long equipmentId) {
+    public Equipment getEquipmentById(int equipmentId) {
         entityManager.getTransaction().begin();
         Equipment equipment = entityManager.find(Equipment.class, equipmentId);
         entityManager.getTransaction().commit();
@@ -51,12 +48,8 @@ public class EquipmentDAO {
     }
 
     public List<Equipment> getAvailableEquipment() {
-        TypedQuery<Equipment> query = entityManager.createQuery(
-                "SELECT e FROM equipment e WHERE e.status = :status",
-                Equipment.class
-        );
+        TypedQuery<Equipment> query  = entityManager.createQuery("SELECT e FROM Equipment  e WHERE e.status = :status", Equipment.class);
         query.setParameter("status", EquipmentStatus.AVAILABLE);
         return query.getResultList();
     }
-
 }

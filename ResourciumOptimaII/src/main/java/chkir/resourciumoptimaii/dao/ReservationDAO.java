@@ -1,10 +1,8 @@
 package chkir.resourciumoptimaii.dao;
 
-import chkir.resourciumoptimaii.entities.Equipment;
 import chkir.resourciumoptimaii.entities.Reservation;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 public class ReservationDAO {

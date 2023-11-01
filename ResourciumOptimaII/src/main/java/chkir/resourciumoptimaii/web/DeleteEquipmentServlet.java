@@ -2,6 +2,7 @@ package chkir.resourciumoptimaii.web;
 
 import chkir.resourciumoptimaii.dao.EquipmentDAO;
 
+import chkir.resourciumoptimaii.services.EquipmentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -17,14 +18,14 @@ import java.io.IOException;
 public class DeleteEquipmentServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private EquipmentDAO equipmentDAO;
+    private EquipmentService equipmentService;
 
 
     public void init() throws ServletException {
 
         entityManagerFactory = Persistence.createEntityManagerFactory("resourceOptima");
         entityManager  = entityManagerFactory.createEntityManager();
-        equipmentDAO = new EquipmentDAO(entityManager);
+        equipmentService = new EquipmentService(entityManager);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,10 +34,10 @@ public class DeleteEquipmentServlet extends HttpServlet {
 
         if (EquipmentIdParam != null) {
             try {
-                Long equipmentId = Long.parseLong(EquipmentIdParam);
+                int equipmentId = Integer.parseInt(EquipmentIdParam);
 
                 // Delete the user by ID.
-                equipmentDAO.deleteEquipment(equipmentId);
+                equipmentService.deleteEquipment(equipmentId);
             } catch (NumberFormatException e) {
                 // Handle the case where the userId parameter is not a valid number.
                 // You can add an error message or redirect to an error page.
